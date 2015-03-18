@@ -7,3 +7,13 @@
 //
 
 #include "Serwer.h"
+
+bool Serwer::addToFriendsList(User* U1, User* U2)
+{
+    return 0;
+}
+
+int Serwer::giveIdToNewUser()
+{
+    return ++currentID;
+}

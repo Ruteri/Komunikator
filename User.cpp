@@ -12,17 +12,24 @@
 #include "User.h"
 #include <iostream>
 
-
+User::User(int ID): friendsList(), devicesList(), IP(nullptr) {}
+// comsubject (ID)
 User::User(Serwer* serwer): IP(nullptr), friendsList(), devicesList() {} // set id
 
 bool User::askServerForPermissionToAddNewFriendAndIfSoAdd(User* user, Serwer* serwer)
 {
+    if (serwer->addToFriendsList(this, user)) {
+        return 1;
+    } else {
+        this->friendsList.push_back(*user);
+    }
     return 0;
 }
 
-int User::getIDFromSerwer(Serwer* serwer)
+bool User::removeFriendFromFriendsList(User* user)
 {
-    return serwer?serwer->giveIdToNewUser():0;
 }
+
+
 
 #endif

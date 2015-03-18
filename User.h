@@ -25,13 +25,16 @@ class User : public ComSubject
     char* IP;
     
 public:
-    User(Serwer* serwer = nullptr);
+    User(int ID); // tylko na poczatek
+    User(Serwer* serwer = nullptr); // rejestracja
+    User(char* registeredUsername, char* registeredPassword); // logowanie - moze
     ~User();
     
         
     bool askServerForPermissionToAddNewFriendAndIfSoAdd(User*, Serwer*);
     
     bool checkIfHasFriend(User*);
+    bool removeFriendFromFriendsList(User*);
     
     // const iterator, dodawanie przyjaciol,usuwanie przyjaciol
     

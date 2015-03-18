@@ -17,7 +17,8 @@ class Serwer
     
 public:
     
-    bool addToFriendsList(User*) {return true;}
+    
+    bool addToFriendsList(User*, User*);
     int giveIdToNewUser();
     
 };
