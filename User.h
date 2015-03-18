@@ -18,7 +18,7 @@
 class User : public ComSubject
 {
     std::vector<User> friendsList;
-    std::vector<device> devicesList;
+    std::vector<device> devicesList; // tu nie w com
     
     // u kogo lista wiadomosci?
     
@@ -28,13 +28,16 @@ public:
     User(Serwer* serwer = nullptr);
     ~User();
     
-    
-    int getIDFromSerwer(Serwer*);
-    
+        
     bool askServerForPermissionToAddNewFriendAndIfSoAdd(User*, Serwer*);
+    
     bool checkIfHasFriend(User*);
     
+    // const iterator, dodawanie przyjaciol,usuwanie przyjaciol
     
+    const std::vector<User>::iterator userListIterator;
+    const std::vector<device>::iterator deviceListIterator;
+
     
     friend std::ostream& operator<<(std::ostream& stream, const User*) {
         return stream;
