@@ -8,6 +8,7 @@
 
 #include "ComSubject.h"
 
+
 class device : public ComSubject{
 private:
 	bool active;
