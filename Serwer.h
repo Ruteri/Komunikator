@@ -10,13 +10,15 @@
 #define __KomunikatorV2__Serwer__
 #include "User.h"
 
+class User;
+
 class Serwer
 {
     int currentID;
     
     
 public:
-    
+    Serwer(): currentID(0) {}
     
     bool addToFriendsList(User*, User*);
     int giveIdToNewUser();

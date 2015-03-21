@@ -15,32 +15,40 @@
 #include <vector>
 #include "Serwer.h"
 
+class Serwer;
+
 class User : public ComSubject
 {
-    std::vector<User> friendsList;
-    std::vector<device> devicesList; // tu nie w com
+    std::vector<User>* friendsList;
+    std::vector<device>* devicesList;
+    std::vector<User>::iterator friendIter;
+    std::vector<device>::iterator devIter;
+
     
-    // u kogo lista wiadomosci?
+    std::vector<std::string>* messList;
     
     char* IP;
+    int ID;
     
 public:
-    User(int ID); // tylko na poczatek
-    User(Serwer* serwer = nullptr); // rejestracja
-    User(char* registeredUsername, char* registeredPassword); // logowanie - moze
-    ~User();
-    
+    User(Serwer* serwer = nullptr);
         
     bool askServerForPermissionToAddNewFriendAndIfSoAdd(User*, Serwer*);
     
     bool checkIfHasFriend(User*);
     bool removeFriendFromFriendsList(User*);
-    
-    // const iterator, dodawanie przyjaciol,usuwanie przyjaciol
-    
-    const std::vector<User>::iterator userListIterator;
-    const std::vector<device>::iterator deviceListIterator;
+    bool removeDeviceFromDevicessList(device*); // POTRZEBUJE ID DEVICE!!!!
 
+    
+    
+    const std::vector<const User>::iterator getUserListIterator();
+    const std::vector<const device>::iterator getDeviceListIterator();
+    const std::vector<const std::string>::iterator getMessageIterator();
+    
+    
+    friend std::ostream& getMessages(std::ostream& stream, const User*) {
+        return stream;
+    }
     
     friend std::ostream& operator<<(std::ostream& stream, const User*) {
         return stream;
