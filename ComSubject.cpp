@@ -16,3 +16,15 @@ void ComSubject::recieveMessage(ComSubject* sender, std::string text){
 void ComSubject::sendMessage(ComSubject* reciever, std::string text){
 	reciever->recieveMessage(this, text);
 }
+
+std::vector<Message*>::iterator ComSubject::getMessageIterator(){
+	return MessageList.begin();
+}
+
+const Message* ComSubject::getMessage(int at){
+	return MessageList[at];
+}
+
+int ComSubject::MessageListSize(){
+	return MessageList.size();
+}
