@@ -14,8 +14,8 @@ class Message{
 	public:
 		Message(ComSubject* sender, ComSubject* reciever, std::string text);
 		const ComSubject* getSender();
-		ComSubject* getReciever();
-		std::string getText();
+		const ComSubject* getReciever();
+		const std::string getText() const;
 };
 
 #endif

@@ -18,6 +18,8 @@ class ComSubject{
 		
 		void recieveMessage(ComSubject* sender, std::string text);
 		void sendMessage(ComSubject* reciever, std::string text);
-
+		//std::vector<Message*>::iterator getMessageIterator();
+		const Message* getMessage(int at);
+		int MessageListSize();
 };
 #endif
