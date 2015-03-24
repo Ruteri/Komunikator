@@ -5,7 +5,7 @@
 //  Created by Konto Mateusza on 17.03.2015.
 //  Copyright (c) 2015 Mateusz. All rights reserved.
 //
-
+/*
 #ifndef __USER_CPP__
 #define __USER_CPP__
 
@@ -59,18 +59,18 @@ bool User::removeDeviceFromDevicessList(device* dev)
 }
 
 
-const std::vector<const User>::iterator User::getUserListIterator()
+std::vector<const User>::iterator User::getUserListIterator()
 {
     return friendsList->cbegin();
 }
 
-const std::vector<const device>::iterator User::getDeviceListIterator()
+std::vector<const device>::iterator User::getDeviceListIterator()
 {
     return devicesList->cbegin();
 
 }
 
-const std::vector<const std::string>::iterator User::getMessageIterator()
+std::vector<const std::string>::iterator User::getMessageIterator()
 {
     return messList->cbegin();
 
@@ -92,4 +92,4 @@ const std::vector<const std::string>::iterator User::getMessageIterator()
 
 
 
-#endif
+#endif*/

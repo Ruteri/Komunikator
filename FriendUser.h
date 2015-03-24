@@ -6,33 +6,48 @@
 //  Copyright (c) 2015 Mateusz. All rights reserved.
 //
 
-#ifndef __KomunikatorV2__FriendUser__
-#define __KomunikatorV2__FriendUser__
 #include "BaseUser.h"
 #include <vector>
-#include <map>
 #include "Message.h"
 #include <iostream>
 #include <string>
 
-class FriendUser : public BaseUser
+#ifndef __KomunikatorV2__FriendUser__
+#define __KomunikatorV2__FriendUser__
+
+class FriendUser
 {
-    std::vector<const Message>* lastMessagesList;
-    
+    std::vector<Message>* messagesReceivedList;
+    std::vector<Message>* messagesSentList;
+
+    int ID;
     
 public:
-    FriendUser(int Id, std::string nick): BaseUser(Id, nick), lastMessagesList(nullptr) { lastMessagesList = new std::vector<const Message>(); }
+    FriendUser(const int& Id = 0): ID(Id), messagesReceivedList(nullptr), messagesSentList(nullptr) { messagesSentList = new std::vector<Message>(); messagesReceivedList = new std::vector<Message>; }
     
-    inline bool pushMessage(const Message& messageToPush) const
+    inline bool messageSent(Message messageToPush) const
     {
-        lastMessagesList->push_back(messageToPush);
+        messagesSentList->push_back(messageToPush);
         return 0;
     }
-    
-    inline std::vector<const Message>::reverse_iterator getIterator() const
+    inline bool messageReceived(Message messageToPush) const
     {
-        return lastMessagesList->rend();
+        messagesReceivedList->push_back(messageToPush);
+        (*messagesReceivedList)[messagesReceivedList->size()] = messageToPush;
+        return 0;
     }
+
+    int getID() {return ID;}
+    
+    inline std::vector<Message>::reverse_iterator getSIterator()
+    {
+        return messagesSentList->rend();
+    }
+    inline std::vector<Message>::reverse_iterator getRIterator()
+    {
+        return messagesReceivedList->rend();
+    }
+
     
     friend std::ostream& operator<<(std::ostream& stream, FriendUser& user) {
         stream << user.getID();

@@ -5,7 +5,7 @@
 //  Created by Konto Mateusza on 17.03.2015.
 //  Copyright (c) 2015 Mateusz. All rights reserved.
 //
-
+/*
 #ifndef __KomunikatorV2__User__
 #define __KomunikatorV2__User__
 
@@ -19,6 +19,7 @@ class Serwer;
 
 class User : public ComSubject
 {
+    // Te będą przeniesione do innej klasy
     std::vector<User>* friendsList;
     std::vector<device>* devicesList;
     std::vector<User>::iterator friendIter;
@@ -35,22 +36,37 @@ public:
         
     bool askServerForPermissionToAddNewFriendAndIfSoAdd(User*, Serwer*);
     
+    // Potem do innej klasy
     bool checkIfHasFriend(User*);
     bool removeFriendFromFriendsList(User*);
     bool removeDeviceFromDevicessList(device*); // POTRZEBUJE ID DEVICE!!!!
-
     
-    
-    const std::vector<const User>::iterator getUserListIterator();
-    const std::vector<const device>::iterator getDeviceListIterator();
-    const std::vector<const std::string>::iterator getMessageIterator();
+    //
+    std::vector<const User>::iterator getUserListIterator();
+    std::vector<const device>::iterator getDeviceListIterator();
+    std::vector<const std::string>::iterator getMessageIterator();
     
     
     friend std::ostream& getMessages(std::ostream& stream, const User*) {
         return stream;
     }
     
-    friend std::ostream& operator<<(std::ostream& stream, const User*) {
+    friend std::ostream& operator<<(std::ostream& stream, User* user) {
+        stream << "Friends: " << std::endl;
+
+        for (user->friendIter = user->friendsList->begin(); user->friendIter != user->friendsList->end(); ++user->friendIter) {
+            stream << "ID: " << user->friendIter->ID << std::endl;
+        }
+        
+        stream << std::endl << "Devices: " << std::endl;
+
+        for (user->devIter = user->devicesList->begin(); user->devIter != user->devicesList->end(); ++user->devIter) {
+            stream << "Device #" << std::endl;
+        }
+ 
+        
+        
+        
         return stream;
     }
 };

@@ -8,20 +8,26 @@
 
 #ifndef __KomunikatorV2__Serwer__
 #define __KomunikatorV2__Serwer__
-#include "User.h"
-
-class User;
+#include "ComSubject.h"
+#include "Message.h"
+#include <vector>
 
 class Serwer
 {
     int currentID;
     
+    //std::vector<LocalUser*>* UserList;
     
 public:
-    Serwer(): currentID(0) {}
+    Serwer(): currentID(0) {}// UserList = new std::vector<LocalUser*>(); }
     
-    bool addToFriendsList(User*, User*);
+    bool addToFriendsList(ComSubject*, ComSubject*);
     int giveIdToNewUser();
     
+    
+    bool processMessage(Message);
+    
 };
+
+
 #endif /* defined(__KomunikatorV2__Serwer__) */
