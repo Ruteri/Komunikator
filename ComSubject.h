@@ -4,6 +4,7 @@
 #include "Message.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 class Message;
 
@@ -13,8 +14,7 @@ class ComSubject{
 		std::vector <Message*> MessageList;
 	public:
 		ComSubject(int id);
-
-		const int getID();
+		int getID() const;
 		void recieveMessage(Message msg);
 		void recieveMessage(ComSubject* sender, std::string text);
 		void sendMessage(ComSubject* reciever, std::string text);
@@ -23,11 +23,6 @@ class ComSubject{
 		const Message* getMessage(int at);
 		int MessageListSize();
 
-		friend std::ostream& operator<<(std::ostream& stream, const ComSubject*) {
-			/*for(int i = 0; i<MessageListSize(); i++){
-
-			}*/
-			return stream;
-		}
+		void operator<<(std::ostream& stream);
 };
 #endif

@@ -4,12 +4,11 @@ ComSubject::ComSubject(int id){
 	ID = id;
 }
 
-const int ComSubject::getID(){
+int ComSubject::getID() const{
 	return ID;
 }
 
 void ComSubject::recieveMessage(Message msg){
-	//MessageList.push_back(&msg);
 	Message* tmp = new Message(msg.getSender(),this,msg.getText());
 	MessageList.push_back(tmp);
 }
@@ -27,7 +26,7 @@ void ComSubject::sendMessage(ComSubject* reciever, std::string text){
 
 void ComSubject::removeMessage(int msgIndex){
 	std::vector<Message*>::iterator ind = MessageList.begin() + msgIndex;
-	free(*(ind));
+	delete (*(ind));
 	MessageList.erase(ind);
 }
 /*
@@ -41,4 +40,13 @@ const Message* ComSubject::getMessage(int at){
 
 int ComSubject::MessageListSize(){
 	return MessageList.size();
+}
+
+void ComSubject::operator<<(std::ostream& stream) {
+	stream<<"ID: "<<ID<<std::endl;
+	for(int i = 0;i<MessageList.size();i++){
+		stream<<"\tNadawca:" <<MessageList[i]->getSender()->getID()<<std::endl;
+		stream<<"\tOdbioca:" <<MessageList[i]->getReciever()->getID()<<std::endl;
+		stream<<"\t"<<MessageList[i]->getText()<<std::endl<<std::endl;
+	}
 }
