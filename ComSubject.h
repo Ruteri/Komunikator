@@ -15,11 +15,19 @@ class ComSubject{
 		ComSubject(int id);
 
 		const int getID();
-		
+		void recieveMessage(Message msg);
 		void recieveMessage(ComSubject* sender, std::string text);
 		void sendMessage(ComSubject* reciever, std::string text);
+		void removeMessage(int msgIndex);
 		//std::vector<Message*>::iterator getMessageIterator();
 		const Message* getMessage(int at);
 		int MessageListSize();
+
+		friend std::ostream& operator<<(std::ostream& stream, const ComSubject*) {
+			/*for(int i = 0; i<MessageListSize(); i++){
+
+			}*/
+			return stream;
+		}
 };
 #endif
