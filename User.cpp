@@ -1,56 +1,23 @@
-//
-//  User.cpp
-//  KomunikatorV2
-//
-//  Created by Konto Mateusza on 17.03.2015.
-//  Copyright (c) 2015 Mateusz. All rights reserved.
-//
-/*
-#ifndef __USER_CPP__
-#define __USER_CPP__
 
 #include "User.h"
-#include <vector>
 
-User::User(Serwer* serwer): IP(nullptr), ID(serwer->giveIdToNewUser()), friendsList(nullptr), devicesList(nullptr), messList(nullptr) {
-    
-    friendsList = new std::vector<User>();
-    devicesList = new std::vector<device>();
-    messList = new std::vector<std::string>();
+User::User(ComSubject* CS): ComSubject(CS->getID()), listaPrzyjaciol(new std::vector<ComSubject*>) {}
+User::User(int Id): ComSubject(Id), listaPrzyjaciol(new std::vector<ComSubject*>) {}
 
-} // set id
-
-bool User::askServerForPermissionToAddNewFriendAndIfSoAdd(User* user, Serwer* serwer)
+bool User::addFriend(ComSubject* toAdd)
 {
-    if (serwer->addToFriendsList(this, user)) {
-        return 1;
-    } else {
-        friendsList->push_back(*user);
-    }
+    listaPrzyjaciol->push_back(new ComSubject(toAdd->getID()));
     return 0;
 }
 
-bool User::removeFriendFromFriendsList(User* user)
+bool User::removeFriend(ComSubject* toDel)
 {
-    for (friendIter = friendsList->begin(); friendIter != friendsList->end(); ++friendIter)
+    std::vector<ComSubject*>::iterator iterator;
+    iterator = listaPrzyjaciol->begin();
+    for (;iterator!=listaPrzyjaciol->end();++iterator)
     {
-        if (friendIter->ID == user->ID)
-        {
-            friendsList->erase(friendIter);
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
-bool User::removeDeviceFromDevicessList(device* dev)
-{
-    for (devIter = devicesList->begin(); devIter != devicesList->end(); ++devIter)
-    {
-        //if (devIter->ID == dev->) potrzebuje cos z dev do zabicia
-        {
-            friendsList->erase(friendIter);
+        if (*iterator == toDel) {
+            listaPrzyjaciol->erase(iterator);
             return 0;
         }
     }
@@ -58,38 +25,22 @@ bool User::removeDeviceFromDevicessList(device* dev)
     return 1;
 }
 
-
-std::vector<const User>::iterator User::getUserListIterator()
+std::vector<ComSubject*>::const_iterator User::getIterator()
 {
-    return friendsList->cbegin();
+    return listaPrzyjaciol->cbegin();
 }
 
-std::vector<const device>::iterator User::getDeviceListIterator()
+bool User::checkIfInFriends(ComSubject* toFind)
 {
-    return devicesList->cbegin();
+    std::vector<ComSubject*>::iterator iterator;
+    iterator = listaPrzyjaciol->begin();
+    for (;iterator!=listaPrzyjaciol->end();++iterator)
+    {
+        if (*iterator == toFind) {
+            return 0;
+        }
+    }
+    
+    return 1;
 
 }
-
-std::vector<const std::string>::iterator User::getMessageIterator()
-{
-    return messList->cbegin();
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif*/

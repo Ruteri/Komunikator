@@ -14,7 +14,7 @@ class ComSubject{
 	public:
 		ComSubject(int id);
 
-		const int getID();
+        int getID() const;
 		void recieveMessage(Message msg);
 		void recieveMessage(ComSubject* sender, std::string text);
 		void sendMessage(ComSubject* reciever, std::string text);

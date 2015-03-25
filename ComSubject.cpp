@@ -4,7 +4,7 @@ ComSubject::ComSubject(int id){
 	ID = id;
 }
 
-const int ComSubject::getID(){
+int ComSubject::getID() const{
 	return ID;
 }
 
@@ -27,7 +27,7 @@ void ComSubject::sendMessage(ComSubject* reciever, std::string text){
 
 void ComSubject::removeMessage(int msgIndex){
 	std::vector<Message*>::iterator ind = MessageList.begin() + msgIndex;
-	free(*(ind));
+	delete (*(ind));
 	MessageList.erase(ind);
 }
 /*
