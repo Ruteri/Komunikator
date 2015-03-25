@@ -11,9 +11,10 @@
 
 class device : public ComSubject{
 private:
+    
 	bool active;
 	std::map<int, std::string> functions;
-	std::map<int, std::string>::iterator iterator;
+	std::map<int, std::string>::iterator iterator; // bez 
 	std::vector <std::string> history;
 
 
@@ -32,5 +33,5 @@ public:
 	void deleteFunction(std::string);
 	std::string showLastOperations();
 	std::vector<std::string> *showLastOperations2();
-};
+}; // zrobic klase funkcji
 #endif /* defined(__KomunikatorV2__Device__) */

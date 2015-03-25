@@ -9,7 +9,6 @@ int ComSubject::getID() const{
 }
 
 void ComSubject::recieveMessage(Message msg){
-	//MessageList.push_back(&msg);
 	Message* tmp = new Message(msg.getSender(),this,msg.getText());
 	MessageList.push_back(tmp);
 }
@@ -41,4 +40,13 @@ const Message* ComSubject::getMessage(int at){
 
 int ComSubject::MessageListSize(){
 	return MessageList.size();
+}
+
+void ComSubject::operator<<(std::ostream& stream) {
+	stream<<"ID: "<<ID<<std::endl;
+	for(int i = 0;i<MessageList.size();i++){
+		stream<<"\tNadawca:" <<MessageList[i]->getSender()->getID()<<std::endl;
+		stream<<"\tOdbioca:" <<MessageList[i]->getReciever()->getID()<<std::endl;
+		stream<<"\t"<<MessageList[i]->getText()<<std::endl<<std::endl;
+	}
 }

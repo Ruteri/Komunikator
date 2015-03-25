@@ -1,7 +1,7 @@
 // Arkadiusz Œwierczek
 
 #include "Device.h"
-
+/*
 device::device()
 {
 	active = false;
@@ -9,7 +9,7 @@ device::device()
 device::device(bool i)
 {
 	active = i;
-}
+}*/
 device::~device()
 {
 	if (!functions.empty())
