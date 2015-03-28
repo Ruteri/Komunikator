@@ -7,27 +7,26 @@
 #include <map>
 
 #include "ComSubject.h"
+#include "FunctionDevice.h"
 
 
 class device : public ComSubject{
 private:
     
 	bool active;
-	std::map<int, std::string> functions;
-	std::map<int, std::string>::iterator iterator; // bez 
+	std::map<int, FunctionDevice> functions;
 	std::vector <std::string> history;
 
 
 public:
-	device();
-	device(bool);
+	device(int);
 	~device();
 	bool isActive();
 	void activate();
 	void deActivate();
 	std::string showFunctions();
-	std::map<int, std::string> *showFunctions2();
-	void addFunction(int, std::string);
+	std::map<int, FunctionDevice> *showFunctions2();
+	void addFunction(int , std::string );
 	void addFunction(std::string);
 	void deleteFunction(int);
 	void deleteFunction(std::string);

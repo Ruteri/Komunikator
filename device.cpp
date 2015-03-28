@@ -1,15 +1,7 @@
 // Arkadiusz Œwierczek
 
 #include "Device.h"
-/*
-device::device()
-{
-	active = false;
-}
-device::device(bool i)
-{
-	active = i;
-}*/
+device::device(int id) :ComSubject(id) {}
 device::~device()
 {
 	if (!functions.empty())
@@ -27,26 +19,31 @@ void device::deActivate()
 {
 	active = false;
 }
-void device::addFunction(int i, std::string nazwa)
+void device::addFunction( int i, std::string nazwa)
 {
-	functions[i]=nazwa;
+	FunctionDevice a;
+	a.SetName(nazwa);
+	functions[i]=a;
 }
 void device::addFunction(std::string nazwa)
 {
 	int size = functions.size();
-	functions[size] = nazwa;
+//	FunctionDevice a(nazwa);
+//	functions[size] = a;
 }
 void device::deleteFunction(int i)
 {
+	std::map<int,FunctionDevice>::iterator iterator;
 	iterator = functions.find(i);
 	if (iterator->first!=0)
 		functions.erase(iterator);
 }
 void device::deleteFunction(std::string nazwa)
 {
+	std::map<int, FunctionDevice>::iterator iterator;
 	for (iterator = functions.begin(); iterator != functions.end(); ++iterator)
 	{
-		if (iterator->second == nazwa)
+		if (iterator->second.GetName() == nazwa)
 		{
 			functions.erase(iterator);
 			return;
@@ -56,17 +53,18 @@ void device::deleteFunction(std::string nazwa)
 std::string device::showFunctions()
 {
 	std::string lista;
+	std::map<int, FunctionDevice>::iterator iterator;
 	if (functions.empty()) return "No functions added\n";
 	for (iterator = functions.begin(); iterator != functions.end(); ++iterator)
 	{
 		lista += std::to_string(iterator->first);
 		lista += '\t';
-		lista += iterator->second;
+		lista += iterator->second.GetName();
 		lista += '\n';
 	}
 	return lista;
 }
-std::map<int, std::string> *device::showFunctions2()
+std::map<int, FunctionDevice> *device::showFunctions2()
 {
 	if (functions.empty()) return nullptr;
 	return &functions;
