@@ -21,8 +21,8 @@ class ComSubject{
 		void sendMessage(ComSubject* reciever, std::string text);
 		void removeMessage(int msgIndex);
 		//std::vector<Message*>::iterator getMessageIterator();
-		const Message* getMessage(int at);
-		int MessageListSize();
+		const Message* getMessage(int at) const;
+		int MessageListSize() const;
 
 		void operator<<(std::ostream& stream);
 };

@@ -34,11 +34,11 @@ std::vector<Message*>::iterator ComSubject::getMessageIterator(){
 	return MessageList.begin();
 }
 */
-const Message* ComSubject::getMessage(int at){
+const Message* ComSubject::getMessage(int at) const{
 	return MessageList[at];
 }
 
-int ComSubject::MessageListSize(){
+int ComSubject::MessageListSize() const{
 	return MessageList.size();
 }
 
