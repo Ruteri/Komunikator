@@ -6,11 +6,11 @@ Message::Message(ComSubject* sender, ComSubject* reciever, std::string text){
 	Text = text;
 }
 
-const ComSubject* Message::getReciever(){
+const ComSubject* Message::getReciever() const{
 	return Reciever;
 }
 
-const ComSubject* Message::getSender(){
+const ComSubject* Message::getSender() const{
 	return Sender;
 }
 

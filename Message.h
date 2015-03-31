@@ -18,8 +18,8 @@ class Message{
 			Reciever = const_cast <ComSubject*> (reciever);
 			Text=text;
 		}
-		const ComSubject* getSender();
-		const ComSubject* getReciever();
+		const ComSubject* getSender() const;
+		const ComSubject* getReciever() const;
 		const std::string getText() const;
 };
 
