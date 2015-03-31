@@ -28,8 +28,9 @@ void device::addFunction( int i, std::string nazwa)
 void device::addFunction(std::string nazwa)
 {
 	int size = functions.size();
-//	FunctionDevice a(nazwa);
-//	functions[size] = a;
+	FunctionDevice a;
+	a.SetName(nazwa);
+	functions[size] = a;
 }
 void device::deleteFunction(int i)
 {

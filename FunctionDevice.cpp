@@ -1,4 +1,5 @@
 #include "FunctionDevice.h"
+
 void FunctionDevice::SetName(std::string nazwa)
 {
 	name = nazwa;
