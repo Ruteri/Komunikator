@@ -15,7 +15,6 @@ private:
     
 	bool active;
 	std::map<int, FunctionDevice> functions;
-	std::vector <std::string> history;
 
 
 public:
@@ -30,7 +29,10 @@ public:
 	void addFunction(std::string);
 	void deleteFunction(int);
 	void deleteFunction(std::string);
-	std::string showLastOperations();
-	std::vector<std::string> *showLastOperations2();
-}; // zrobic klase funkcji
+	friend std::ostream& operator<<(std::ostream& stream, device& dev)
+	{
+		stream << "ID: " << dev.getID() << "\nStatus:" << dev.isActive() << "\nFunkcje:\n" << dev.showFunctions() << std::endl;
+		return stream;
+	}
+};
 #endif /* defined(__KomunikatorV2__Device__) */
